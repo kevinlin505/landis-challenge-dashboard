@@ -98,7 +98,7 @@ export const getMortageGoalCompletionCount = (state) => {
 const getSortedData = (data, key) => {
   const values = data.map((current) => parseFloat(current[key]));
 
-  return values.sort();
+  return values.sort((a, b) => (a > b ? 1 : -1));
 };
 
 const getAverage = (data, key) => {
@@ -125,6 +125,8 @@ export const getOverviewData = (state) => {
   const creditMedian = sortedCredits[Math.floor(sortedCredits.length / 2)];
   const balanceMedian = sortedBalance[Math.floor(sortedCredits.length / 2)];
 
+  console.log(sortedBalance);
+
   return [
     {
       name: '',
@@ -136,7 +138,7 @@ export const getOverviewData = (state) => {
     },
     {
       name: 'Min',
-      value: [sortedCredits[0], sortedBalance[1]],
+      value: [sortedCredits[0], sortedBalance[0]],
     },
     {
       name: 'Max',

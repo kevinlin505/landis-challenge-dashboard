@@ -7,7 +7,7 @@
   "scripts": {
     "start": "webpack --env.environment production --progress",
     "dev": "nodemon --watch webpack.config.js --watch webpack-config* --exec \"webpack-dev-server --env.environment development\"",
-    "heroku-prebuild": "yarn --dev",
+    "heroku-prebuild": "yarn add webpack-cli -g",
     "build": "webpack --env.environment production --progress",
     "lint": "eslint . --ext .js,.jsx --cache",
     "lint:check": "eslint --print-config . | eslint-config-prettier-check"
@@ -57,6 +57,7 @@
     "style-loader": "1.2.1",
     "webpack": "4.44.1",
     "webpack-bundle-analyzer": "3.8.0",
+    "webpack-cli": "3.3.12",
     "webpack-dev-server": "3.11.0",
     "webpack-merge": "5.1.1"
   },

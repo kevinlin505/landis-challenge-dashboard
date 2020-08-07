@@ -7,6 +7,7 @@
   "scripts": {
     "start": "webpack --env.environment production --progress",
     "dev": "nodemon --watch webpack.config.js --watch webpack-config* --exec \"webpack-dev-server --env.environment development\"",
+    "heroku-prebuild": "yarn --dev",
     "build": "webpack --env.environment production --progress",
     "lint": "eslint . --ext .js,.jsx --cache",
     "lint:check": "eslint --print-config . | eslint-config-prettier-check"

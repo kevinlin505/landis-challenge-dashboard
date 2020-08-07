@@ -29,7 +29,8 @@ const Container = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  width: 100%;
+  max-width: 1400px;
   min-height: 100%;
-  background-color: #edf2f9;
   padding-top: 80px;
 `;

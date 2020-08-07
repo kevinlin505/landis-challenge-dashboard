@@ -93,3 +93,62 @@ export const getMortageGoalCompletionCount = (state) => {
     count: progressCounts[key],
   }));
 };
+
+// Calculate overview data
+const getSortedData = (data, key) => {
+  const values = data.map((current) => parseFloat(current[key]));
+
+  return values.sort();
+};
+
+const getAverage = (data, key) => {
+  const total = data.reduce(
+    (sum, current) => sum + parseFloat(current[key]),
+    0,
+  );
+
+  return total / data.length;
+};
+
+export const getOverviewData = (state) => {
+  const { accounts } = state.account;
+  const fields = ['credit', 'balance'];
+
+  const count = accounts.length;
+
+  const sortedCredits = getSortedData(accounts, fields[0]);
+  const sortedBalance = getSortedData(accounts, fields[1]);
+
+  const averageCredit = Math.floor(getAverage(accounts, fields[0]));
+  const averageBalance = Math.floor(getAverage(accounts, fields[1]));
+
+  const creditMedian = sortedCredits[Math.floor(sortedCredits.length / 2)];
+  const balanceMedian = sortedBalance[Math.floor(sortedCredits.length / 2)];
+
+  return [
+    {
+      name: '',
+      value: fields,
+    },
+    {
+      name: 'Accounts',
+      value: [count, count],
+    },
+    {
+      name: 'Min',
+      value: [sortedCredits[0], sortedBalance[1]],
+    },
+    {
+      name: 'Max',
+      value: [sortedCredits[count - 1], sortedBalance[count - 1]],
+    },
+    {
+      name: 'Mean',
+      value: [averageCredit, averageBalance],
+    },
+    {
+      name: 'Median',
+      value: [creditMedian, balanceMedian],
+    },
+  ];
+};

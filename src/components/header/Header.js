@@ -5,12 +5,19 @@ import styled from 'styled-components';
 const Header = ({ activeRoute }) => {
   return (
     <Container>
-      <LinkWrapper isActive={activeRoute === 'accounts'}>
-        <HeaderLink to="/accounts">Accounts</HeaderLink>
-      </LinkWrapper>
-      <LinkWrapper isActive={activeRoute === 'insights'}>
-        <HeaderLink to="/insights">Insights</HeaderLink>
-      </LinkWrapper>
+      <LinksWrapper>
+        <HeaderLink to="/">
+          <Logo src="https://resources.landis.com/logos/landscape-fg-primary.svg" />
+        </HeaderLink>
+      </LinksWrapper>
+      <LinksWrapper>
+        <LinkWrapper isActive={activeRoute === 'accounts'}>
+          <HeaderLink to="/accounts">Accounts</HeaderLink>
+        </LinkWrapper>
+        <LinkWrapper isActive={activeRoute === 'insights'}>
+          <HeaderLink to="/insights">Insights</HeaderLink>
+        </LinkWrapper>
+      </LinksWrapper>
     </Container>
   );
 };
@@ -19,7 +26,7 @@ export default withRouter(Header);
 
 const Container = styled.div`
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   position: fixed;
   top: 0;
   width: 100%;
@@ -28,6 +35,14 @@ const Container = styled.div`
   background-color: #fff;
   border-bottom: 3px solid #7952b3;
   z-index: 1;
+`;
+
+const Logo = styled.img`
+  width: 100px;
+`;
+
+const LinksWrapper = styled.div`
+  display: flex;
 `;
 
 const LinkWrapper = styled.div`
@@ -43,6 +58,6 @@ const HeaderLink = styled(Link)`
   justify-content: center;
   width: 100%;
   height: 100%;
-  color: #7952b3;
+  color: #202a61;
   text-decoration: none;
 `;
